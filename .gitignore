@@ -1,4 +1,5 @@
 UpdateLog.htm
+UpgradeLog.htm
 
 bin
 bin/*
@@ -8,3 +9,21 @@ Debug/*
 
 Backup
 Backup/*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+
