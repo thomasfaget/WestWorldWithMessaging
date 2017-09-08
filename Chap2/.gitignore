@@ -26,4 +26,7 @@ ipch/
 *.vspx
 *.sap
 
+# Visual Studio dependancy
+*.vcxproj
+*.vcxproj.filters
 
