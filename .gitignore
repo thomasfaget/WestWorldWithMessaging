@@ -1,0 +1,10 @@
+UpdateLog.htm
+
+bin
+bin/*
+
+Debug
+Debug/*
+
+Backup
+Backup/*
