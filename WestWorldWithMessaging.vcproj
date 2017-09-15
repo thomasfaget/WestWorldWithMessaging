@@ -410,15 +410,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\FSM\State.h"
+				RelativePath="FSM\State.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\FSM\StateMachine.h"
+				RelativePath="StateMachine.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\Messaging\Telegram.h"
+				RelativePath="Messaging\Telegram.h"
 				>
 			</File>
 		</Filter>
@@ -426,15 +426,15 @@
 			Name="misc"
 			>
 			<File
-				RelativePath="..\..\Common\misc\ConsoleUtils.h"
+				RelativePath="misc\ConsoleUtils.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\ConsoleUtils.h"
+				RelativePath="ConsoleUtils.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\Time\CrudeTimer.cpp"
+				RelativePath="Time\CrudeTimer.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -454,19 +454,19 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\Common\Time\CrudeTimer.h"
+				RelativePath="Time\CrudeTimer.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\2D\SVector2D.h"
+				RelativePath="2D\SVector2D.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\utils.h"
+				RelativePath="utils.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\misc\utils.h"
+				RelativePath="misc\utils.h"
 				>
 			</File>
 		</Filter>

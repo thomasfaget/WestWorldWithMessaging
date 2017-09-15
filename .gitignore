@@ -1,7 +1,28 @@
-﻿################################################################################
-# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
-################################################################################
+UpdateLog.htm
+UpgradeLog.htm
 
-/.vs/WestWorldWithMessaging/v15/Browse.VC.db
-/.vs/WestWorldWithMessaging/v15
-/.vs
+bin
+bin/*
+
+Debug
+Debug/*
+
+Backup
+Backup/*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
