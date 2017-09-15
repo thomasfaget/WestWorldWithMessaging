@@ -25,5 +25,10 @@ ipch/
 *.vsp
 *.vspx
 *.sap
+*.json
 
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 /.vs/**

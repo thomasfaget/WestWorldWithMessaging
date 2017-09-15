@@ -42,8 +42,8 @@
     <ClCompile Include="MinersWifeOwnedStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\Time\CrudeTimer.cpp">
-      <Filter>misc</Filter>
+    <ClCompile Include="Time\CrudeTimer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,32 +77,32 @@
     <ClInclude Include="MinersWifeOwnedStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\FSM\State.h">
+    <ClInclude Include="2D\SVector2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\FSM\StateMachine.h">
+    <ClInclude Include="ConsoleUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\Messaging\Telegram.h">
+    <ClInclude Include="FSM\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\misc\ConsoleUtils.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="FSM\StateMachine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\ConsoleUtils.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="Messaging\Telegram.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\Time\CrudeTimer.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="misc\ConsoleUtils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\2D\SVector2D.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="misc\utils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\utils.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="Time\CrudeTimer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\misc\utils.h">
-      <Filter>misc</Filter>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
