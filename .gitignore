@@ -2,6 +2,4 @@
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/WestWorldWithMessaging/v15/Browse.VC.db
-/.vs/WestWorldWithMessaging/v15
-/.vs
+/.vs/*
