@@ -26,3 +26,4 @@ ipch/
 *.vspx
 *.sap
 
+/.vs/*
