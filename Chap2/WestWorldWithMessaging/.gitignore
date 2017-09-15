@@ -1,14 +1,15 @@
 UpdateLog.htm
 UpgradeLog.htm
 
-bin
-bin/*
+.vs/**
 
-Debug
-Debug/*
+bin/**
 
-Backup
-Backup/*
+Debug/**
+!Debug/*.cpp
+!Debug/*.h
+
+Backup/**
 
 # Visual C++ cache files
 ipch/
@@ -29,3 +30,5 @@ ipch/
 # Visual Studio dependancy
 *.vcxproj
 *.vcxproj.filters
+*.vsxproj.user
+*.sln
