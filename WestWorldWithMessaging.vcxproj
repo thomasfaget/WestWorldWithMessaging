@@ -140,14 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2D\SVector2D.h" />
-    <ClInclude Include="ConsoleUtils.h" />
     <ClInclude Include="FSM\State.h" />
     <ClInclude Include="FSM\StateMachine.h" />
     <ClInclude Include="Messaging\Telegram.h" />
     <ClInclude Include="misc\ConsoleUtils.h" />
     <ClInclude Include="misc\utils.h" />
     <ClInclude Include="Time\CrudeTimer.h" />
-    <ClInclude Include="utils.h" />
     <ClInclude Include="BaseGameEntity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityNames.h" />
@@ -158,6 +156,9 @@
     <ClInclude Include="MinerOwnedStates.h" />
     <ClInclude Include="MinersWife.h" />
     <ClInclude Include="MinersWifeOwnedStates.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
