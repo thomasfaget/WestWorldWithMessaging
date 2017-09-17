@@ -27,6 +27,9 @@ ipch/
 *.sap
 *.json
 
+*.plg
+*.dsw
+*.dsp
 *.vcproj
 *.sln
 *.vcxproj
