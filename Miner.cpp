@@ -1,4 +1,5 @@
 #include "Miner.h"
+#include <random>
 
 bool Miner::HandleMessage(const Telegram& msg)
 {
@@ -46,4 +47,17 @@ bool Miner::Fatigued()const
   }
 
   return false;
+}
+
+bool Miner::TryToPunch()
+{
+	int rand = std::rand() % 2;
+	if (rand == 0) {
+		// Success his punch :
+		return true;
+	}
+	else {
+		// Fail to punch :
+		return false;
+	}
 }
