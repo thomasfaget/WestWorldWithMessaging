@@ -31,6 +31,10 @@ const int MaxNuggets         = 3;
 const int ThirstLevel        = 5;
 //above this value a miner is sleepy
 const int TirednessThreshold = 5;
+// The life max of the miner
+const int lifeMax = 5;
+// number of turns until the KO pnj wake up:
+const int koDelay = 5;
 
 
 
@@ -54,6 +58,9 @@ private:
   //the higher the value, the more tired the miner
   int                   m_iFatigue;
 
+  int life; // His life
+  int koLevel; // The current number of turns  being KO
+
 public:
 
   Miner(int id):m_Location(shack),
@@ -61,6 +68,8 @@ public:
                           m_iMoneyInBank(0),
                           m_iThirst(0),
                           m_iFatigue(0),
+						  life(lifeMax),
+						  koLevel(0),
                           BaseGameEntity(id)
                                
   {
@@ -104,6 +113,19 @@ public:
 
   bool          Thirsty()const; 
   void          BuyAndDrinkAWhiskey(){m_iThirst = 0; m_iMoneyInBank-=2;}
+
+  // Handle life :
+  void DecreaseLife() { life--; }
+  void ResetLife() { life = lifeMax; }
+  bool IsKO() const { return life == 0; }
+
+  // Handle KO :
+  void IncreaseKoLevel() { koLevel++; }
+  void ResetKoLevel() { koLevel = 0; }
+  bool IsStunned() const { return koLevel == koDelay; }
+
+  // if true attack succes else no 
+  bool          TryToPunch();
 
 };
 

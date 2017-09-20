@@ -142,6 +142,56 @@ public:
   virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
+class Fight : public State<Miner>
+{
+private:
+
+	Fight() {}
+
+	//copy ctor and assignment should be private
+	Fight(const Fight&);
+	Fight& operator=(const Fight&);
+
+public:
+
+	//this is a singleton
+	static Fight* Instance();
+
+	virtual void Enter(Miner* miner);
+
+	virtual void Execute(Miner* miner);
+
+	virtual void Exit(Miner* miner);
+
+	virtual bool OnMessage(Miner* agent, const Telegram& msg);
+};
+
+
+class KO : public State<Miner>
+{
+private:
+
+	KO() {}
+
+	//copy ctor and assignment should be private
+	KO(const KO&);
+	KO& operator=(const KO&);
+
+public:
+
+	//this is a singleton
+	static KO* Instance();
+
+	virtual void Enter(Miner* boozer);
+
+	virtual void Execute(Miner* boozer);
+
+	virtual void Exit(Miner* boozer);
+
+	virtual bool OnMessage(Miner* agent, const Telegram& msg);
+
+};
+
 
 //------------------------------------------------------------------------
 //
