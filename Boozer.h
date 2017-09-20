@@ -43,7 +43,7 @@ private:
 
 public:
 
-	Boozer(int id) :m_Location(saloon),
+	Boozer(int id):m_Location(saloon),
 		BaseGameEntity(id),
 		life(lifeMax2),
 		koLevel(0)

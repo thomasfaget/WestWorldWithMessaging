@@ -13,56 +13,47 @@
 
 std::ofstream os;
 
-int main()
-{
-//define this to send output to a text file (see locations.h)
+int main() {
+    //define this to send output to a text file (see locations.h)
 #ifdef TEXTOUTPUT
   os.open("output.txt");
 #endif
 
-  //seed random number generator
-  srand((unsigned) time(NULL));
+    //seed random number generator
+    srand((unsigned)time(NULL));
 
-  //create a miner
-  Miner* Bob = new Miner(ent_Miner_Bob);
+    //create a miner
+    Miner* Bob = new Miner(ent_Miner_Bob);
 
-  //create his wife
-  MinersWife* Elsa = new MinersWife(ent_Elsa);
+    //create his wife
+    MinersWife* Elsa = new MinersWife(ent_Elsa);
 
-  Boozer* Booz = new Boozer(ent_Boozer);
+    Boozer* Booz = new Boozer(ent_Boozer);
 
-  //register them with the entity manager
-  EntityMgr->RegisterEntity(Bob);
-  EntityMgr->RegisterEntity(Elsa);
-  EntityMgr->RegisterEntity(Booz);
+    //register them with the entity manager
+    EntityMgr->RegisterEntity(Bob);
+    EntityMgr->RegisterEntity(Elsa);
+    EntityMgr->RegisterEntity(Booz);
 
-  //run Bob and Elsa through a few Update calls
-  for (int i=0; i<30; ++i)
-  { 
-    Bob->Update();
-    Elsa->Update();
-	Booz->Update();
+    //run Bob and Elsa through a few Update calls
+    for (int i = 0; i < 30; ++i) {
+        Bob->Update();
+        Elsa->Update();
+        Booz->Update();
 
-    //dispatch any delayed messages
-    Dispatch->DispatchDelayedMessages();
+        //dispatch any delayed messages
+        Dispatch->DispatchDelayedMessages();
 
-    Sleep(800);
-  }
+        Sleep(800);
+    }
 
-  //tidy up
-  delete Bob;
-  delete Elsa;
-  delete Booz;
+    //tidy up
+    delete Bob;
+    delete Elsa;
+    delete Booz;
 
-  //wait for a keypress before exiting
-  PressAnyKeyToContinue();
+    //wait for a keypress before exiting
+    PressAnyKeyToContinue();
 
-
-  return 0;
+    return 0;
 }
-
-
-
-
-
-

@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="State&lt;entity_type&gt;" Collapsed="true">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Position X="17.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAIACAABAAAAA=</HashCode>
       <FileName>FSM\State.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StateMachine&lt;entity_type&gt;" Collapsed="true">
-    <Position X="23.5" Y="1.5" Width="1.5" />
+    <Position X="37.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQQEIBAgIAJBAAAAAAAASAAAAAgIAABCAAAgAAAQAA=</HashCode>
       <FileName>FSM\StateMachine.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CrudeTimer" Collapsed="true">
-    <Position X="21.75" Y="0.5" Width="1.5" />
+    <Position X="35.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAACAAAAAAAAAAAAIAQAAgAAAAAAA=</HashCode>
       <FileName>Time\CrudeTimer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseGameEntity" Collapsed="true">
-    <Position X="1.75" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQIAABAAAAAgAAAAEAAAAAAAAAAACAAAAAUAAAAAAA=</HashCode>
       <FileName>BaseGameEntity.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EntityManager" Collapsed="true">
-    <Position X="23.5" Y="0.5" Width="1.5" />
+    <Position X="37.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAABQBAAAAAAAAAAAAQAAgAAAAQAA=</HashCode>
       <FileName>EntityManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MessageDispatcher" Collapsed="true">
-    <Position X="21.75" Y="1.5" Width="1.5" />
+    <Position X="35.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAEAAAAAAAIAAAAAAAQQAAgAAAAAQA=</HashCode>
       <FileName>MessageDispatcher.h</FileName>
@@ -45,40 +45,40 @@
   <Class Name="Miner" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAQAMABADEwwAAACAAIJAAAAAGAAAAAAABAAEBAAYAA=</HashCode>
+      <HashCode>CAUIMARADEwwAAACgIIJAAAQAGAAAAAQABAAEBAAYAA=</HashCode>
       <FileName>Miner.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnterMineAndDigForNugget" Collapsed="true">
-    <Position X="5.75" Y="1.75" Width="1.5" />
+    <Position X="6.25" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAIAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinerOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VisitBankAndDepositGold" Collapsed="true">
-    <Position X="8" Y="1.75" Width="1.5" />
+    <Position X="9.25" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinerOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GoHomeAndSleepTilRested" Collapsed="true">
-    <Position X="12.5" Y="1.75" Width="1.5" />
+    <Position X="14.25" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinerOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="QuenchThirst" Collapsed="true">
-    <Position X="17" Y="1.75" Width="1.5" />
+    <Position X="19.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinerOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EatStew" Collapsed="true">
-    <Position X="1.25" Y="1.75" Width="1.5" />
+    <Position X="1.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinerOwnedStates.h</FileName>
@@ -92,58 +92,100 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WifesGlobalState" Collapsed="true">
-    <Position X="10.25" Y="1.75" Width="1.5" />
+    <Position X="12" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinersWifeOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DoHouseWork" Collapsed="true">
-    <Position X="14.75" Y="1.75" Width="1.5" />
+    <Position X="17.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAYACgAAABAAA=</HashCode>
       <FileName>MinersWifeOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VisitBathroom" Collapsed="true">
-    <Position X="19.25" Y="1.75" Width="1.5" />
+    <Position X="24" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAACAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinersWifeOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CookStew" Collapsed="true">
-    <Position X="3.5" Y="1.75" Width="1.5" />
+    <Position X="4" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAABAAAAEAAAAYACgAAAAAAA=</HashCode>
       <FileName>MinersWifeOwnedStates.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Boozer" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUIAARAAAwAAAAAgIIIAAARACAAAAAQAAIAAAAAIAA=</HashCode>
+      <FileName>Boozer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrinkB" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
+      <FileName>BoozerOwnedStates.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FightB" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
+      <FileName>BoozerOwnedStates.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KOB" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
+      <FileName>BoozerOwnedStates.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fight" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
+      <FileName>MinerOwnedStates.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KO" Collapsed="true">
+    <Position X="33" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAQAAAAAAAAAAAAEAAAAYACgAAAAAAA=</HashCode>
+      <FileName>MinerOwnedStates.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Telegram" Collapsed="true">
-    <Position X="21.75" Y="2.75" Width="1.5" />
+    <Position X="35.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAggAAAAAAABAAAAAAAAAAAAEBAAAAAAAAAAIAAA=</HashCode>
       <FileName>Messaging\Telegram.h</FileName>
     </TypeIdentifier>
   </Struct>
   <Enum Name="__unnamed_enum_0005_1" Collapsed="true">
-    <Position X="21.75" Y="4" Width="1.5" />
+    <Position X="35.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAIAAACAAAA=</HashCode>
       <FileName>EntityNames.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="location_type" Collapsed="true">
-    <Position X="23.5" Y="4" Width="1.5" />
+    <Position X="37.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAgAAAAAAAAAAAAAAAQAAAAAAAAAAQA=</HashCode>
       <FileName>Locations.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="message_type" Collapsed="true">
-    <Position X="21.75" Y="4.75" Width="1.5" />
+    <Position X="35.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAACAAAAAACAYAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MessageTypes.h</FileName>
     </TypeIdentifier>
   </Enum>
