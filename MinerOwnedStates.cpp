@@ -239,7 +239,13 @@ void QuenchThirst::Execute(Miner* pMiner)
 
   cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
 
-  pMiner->GetFSM()->ChangeState(Fight::Instance());  
+  // tell the boozer Bob is here
+  Dispatch->DispatchMessage(
+	  SEND_MSG_IMMEDIATELY,
+	  pMiner->ID(),        
+	  ent_Boozer,
+	  Msg_ImDrinking,
+	  NO_ADDITIONAL_INFO);
 }
 
 
@@ -250,8 +256,19 @@ void QuenchThirst::Exit(Miner* pMiner)
 
 
 bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
-{
-  //send msg to global message handler
+{    
+	switch (msg.Msg) {
+
+		case Msg_ImDrinking: 
+
+			cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: " << Clock->GetCurrentTime();
+
+			pMiner->GetFSM()->ChangeState(Fight::Instance());
+
+			return true;
+		
+	}
+
   return false;
 }
 
@@ -289,8 +306,7 @@ bool EatStew::OnMessage(Miner* pMiner, const Telegram& msg)
   return false;
 }
 
-
-// ------------- Fight State -----------------
+//------------------------------------------------------------------------Fight
 Fight* Fight::Instance()
 {
 	static Fight instance;
@@ -302,12 +318,7 @@ Fight* Fight::Instance()
 void Fight::Enter(Miner* pBoozer) {
 
 	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm gonna kick your ass motherfucker !";
-	Dispatch->DispatchMessage(
-		SEND_MSG_IMMEDIATELY,
-		pBoozer->ID(),
-		ent_Boozer,
-		Msg_WannaFight,
-		NO_ADDITIONAL_INFO);
+	
 
 }
 
@@ -328,8 +339,6 @@ void Fight::Execute(Miner* pBoozer) {
 }
 
 void Fight::Exit(Miner* pBoozer) {
-	// He resets his lifewhen he is KO
-	pBoozer->ResetLife();
 	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Lets leave this fucking saloon ! ";
 }
 
@@ -338,13 +347,12 @@ bool Fight::OnMessage(Miner* pBoozer, const Telegram& msg) {
 	switch (msg.Msg) {
 
 		case Msg_IPunchYou: 
-		{
+
 			// The Miner recieves a punch :
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
 			pBoozer->DecreaseLife();
-			bool ko = pBoozer->IsKO();
-			if (ko) {
+			if (pBoozer->IsKO()) {
 				// If KO : Send a message to the boozer :
 				Dispatch->DispatchMessage(
 					SEND_MSG_IMMEDIATELY,
@@ -357,17 +365,16 @@ bool Fight::OnMessage(Miner* pBoozer, const Telegram& msg) {
 				pBoozer->GetFSM()->ChangeState(KO::Instance());
 			}
 			return true;
-		}
 
 		case Msg_ImKO:
-		{
+		
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
 			// If the boozer is KO, he go back in the mine :
 			pBoozer->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 			pBoozer->ResetLife();
 			return true;
-		}
+		
 
 	}
 	return false;

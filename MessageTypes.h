@@ -7,6 +7,7 @@ enum message_type
 {
   Msg_HiHoneyImHome,
   Msg_StewReady,
+  Msg_ImDrinking,
   Msg_WannaFight,
   Msg_IPunchYou,
   Msg_ImKO
