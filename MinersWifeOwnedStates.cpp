@@ -192,7 +192,6 @@ void CookStew::Exit(MinersWife* wife)
 
 bool CookStew::OnMessage(MinersWife* wife, const Telegram& msg)
 {
-  SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
 
   switch(msg.Msg)
   {

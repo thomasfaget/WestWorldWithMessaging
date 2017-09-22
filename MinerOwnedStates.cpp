@@ -354,11 +354,13 @@ void Fight::Exit(Miner* pMiner) {
 
 bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 
-	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	
 
 	switch (msg.Msg) {
 
 		case Msg_IPunchYou: 
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			// The Miner recieves a punch :
 			cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: " << Clock->GetCurrentTime();
@@ -381,6 +383,8 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 		case Msg_ImKO:
 		
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
 			cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: " << Clock->GetCurrentTime();
 
 			cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : Lets leave this fucking saloon ! ";

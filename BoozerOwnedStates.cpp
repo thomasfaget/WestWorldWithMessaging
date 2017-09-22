@@ -36,9 +36,13 @@ void DrinkB::Execute(Boozer* pBoozer) {
 
 bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 
+	
+
 	switch (msg.Msg) {
 
 		case Msg_ImDrinking: 
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
@@ -53,6 +57,8 @@ bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 			return true;
 
 		case Msg_AcceptFight:
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
@@ -109,11 +115,11 @@ void FightB::Exit(Boozer* pBoozer) {
 
 bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 
-	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-
 	switch (msg.Msg) {
 
 		case Msg_IPunchYou: 
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		
 			// The boozer recieves a punch :
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
@@ -136,6 +142,8 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 		
 
 		case Msg_ImKO:
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
