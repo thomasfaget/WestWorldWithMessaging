@@ -257,18 +257,20 @@ void QuenchThirst::Exit(Miner* pMiner)
 
 bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 {    
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
 	switch (msg.Msg) {
-		/*
-		case Msg_ImDrinking: 
 
-			cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: " << Clock->GetCurrentTime();
-
-			pMiner->GetFSM()->ChangeState(Fight::Instance());
-
-			return true;
-			*/ //---- inutile ???
 		case Msg_WannaFight:
 			
+			// ack
+			Dispatch->DispatchMessage(
+				SEND_MSG_IMMEDIATELY,
+				pMiner->ID(),
+				ent_Boozer,
+				Msg_AcceptFight,
+				NO_ADDITIONAL_INFO);
+
 			pMiner->GetFSM()->ChangeState(Fight::Instance());
 
 			return true;
@@ -323,9 +325,8 @@ Fight* Fight::Instance()
 
 void Fight::Enter(Miner* pMiner) {
 
-	cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : I'm gonna kick your ass motherfucker !";
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : You started this fight !";
 	
-
 }
 
 
@@ -348,10 +349,12 @@ void Fight::Execute(Miner* pMiner) {
 }
 
 void Fight::Exit(Miner* pMiner) {
-	cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : Lets leave this fucking saloon ! ";
+	
 }
 
 bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
+
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 	switch (msg.Msg) {
 
@@ -380,9 +383,12 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 		
 			cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: " << Clock->GetCurrentTime();
 
+			cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : Lets leave this fucking saloon ! ";
+
 			// If the boozer is KO, he go back in the mine :
-			pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 			pMiner->ResetLife();
+			pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
+
 			return true;
 		
 
@@ -411,7 +417,7 @@ void KO::Execute(Miner* pMiner) {
 	pMiner->IncreaseKoLevel();
 	bool change = pMiner->IsStunned();
 	if (change) {
-		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+		pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
 	}
 
 

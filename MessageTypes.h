@@ -9,6 +9,7 @@ enum message_type
   Msg_StewReady,
   Msg_ImDrinking,
   Msg_WannaFight,
+  Msg_AcceptFight,
   Msg_IPunchYou,
   Msg_ImKO
 };
@@ -33,6 +34,10 @@ inline std::string MsgToStr(int msg)
   case Msg_WannaFight:
 
 	  return "WannaFight";
+
+  case Msg_AcceptFight:
+
+	  return "AcceptFight";
 
   case Msg_IPunchYou:
 

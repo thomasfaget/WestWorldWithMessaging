@@ -42,6 +42,20 @@ bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
+			// tell Bob to enter the fight immediately
+			Dispatch->DispatchMessage(
+				SEND_MSG_IMMEDIATELY,
+				pBoozer->ID(),
+				ent_Miner_Bob,
+				Msg_WannaFight,
+				NO_ADDITIONAL_INFO);
+
+			return true;
+
+		case Msg_AcceptFight:
+
+			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+
 			pBoozer->GetFSM()->ChangeState(FightB::Instance());
 
 			return true;
@@ -62,15 +76,8 @@ FightB* FightB::Instance()
 
 void FightB::Enter(Boozer* pBoozer) {
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm gonna kick your ass motherfucker !";
+	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Hey look at that stupid face, haha!";
 
-	// tell Bob to enter the fight immediately
-	Dispatch->DispatchMessage(
-		SEND_MSG_IMMEDIATELY,
-		pBoozer->ID(),
-		ent_Miner_Bob,
-		Msg_WannaFight,
-		NO_ADDITIONAL_INFO);
 }
 
 
@@ -101,6 +108,8 @@ void FightB::Exit(Boozer* pBoozer) {
 }
 
 bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
+
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 	switch (msg.Msg) {
 
