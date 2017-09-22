@@ -96,8 +96,6 @@ void FightB::Execute(Boozer* pBoozer) {
 
 void FightB::Exit(Boozer* pBoozer) {
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What a stupid fight...";
-
 	// He resets his lifewhen he is KO
 	pBoozer->ResetLife();
 }
@@ -132,6 +130,8 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 		
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
+			cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What a stupid fight...";
+
 			// If the miner is KO, he go back DrinkB and reset his life :
 			pBoozer->GetFSM()->ChangeState(DrinkB::Instance());
 			return true;
@@ -152,11 +152,13 @@ KOB* KOB::Instance()
 
 
 void KOB::Enter(Boozer* pBoozer) {
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Is KO !";
 }
 
 
 void KOB::Execute(Boozer* pBoozer) {
+
+	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm KO !";
+
 	// increase Ko level
 	pBoozer->IncreaseKoLevel();
 	bool change = pBoozer->IsStunned();

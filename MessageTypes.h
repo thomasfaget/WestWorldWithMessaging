@@ -26,6 +26,10 @@ inline std::string MsgToStr(int msg)
     
     return "StewReady";
 
+  case Msg_ImDrinking:
+
+	  return "ImDrinking";
+
   case Msg_WannaFight:
 
 	  return "WannaFight";
