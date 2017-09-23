@@ -81,7 +81,7 @@ FightB* FightB::Instance()
 
 
 void FightB::Enter(Boozer* pBoozer) {
-
+	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Hey look at that stupid face, haha!";
 
 }
@@ -96,6 +96,7 @@ void FightB::Execute(Boozer* pBoozer) {
 	
 	bool punch = pBoozer->TryToPunch();
 	if (punch) {
+		cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Take this Miner ! ";
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,

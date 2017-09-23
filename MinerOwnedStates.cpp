@@ -251,6 +251,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 
 void QuenchThirst::Exit(Miner* pMiner)
 { 
+	SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
   cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "I drink too much ";
 }
 
@@ -324,7 +325,8 @@ Fight* Fight::Instance()
 
 
 void Fight::Enter(Miner* pMiner) {
-
+	pMiner->StartFight();
+	SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 	cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : You started this fight !";
 	
 }
@@ -337,6 +339,7 @@ void Fight::Execute(Miner* pMiner) {
 	// He tries to punch boozer
 	bool punch = pMiner->TryToPunch();
 	if (punch) {
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << " : Take this Boozer !";
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -349,7 +352,7 @@ void Fight::Execute(Miner* pMiner) {
 }
 
 void Fight::Exit(Miner* pMiner) {
-	
+	pMiner->StopFight();
 }
 
 bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {

@@ -61,6 +61,8 @@ private:
   int life; // His life
   int koLevel; // The current number of turns  being KO
 
+  bool isFighting;
+
 public:
 
   Miner(int id):m_Location(shack),
@@ -70,6 +72,7 @@ public:
                           m_iFatigue(0),
 						  life(lifeMax),
 						  koLevel(0),
+						  isFighting(false),
                           BaseGameEntity(id)
                                
   {
@@ -126,6 +129,9 @@ public:
 
   // if true attack succes else no 
   bool          TryToPunch();
+
+  void			StartFight() { isFighting = true; }
+  void			StopFight() { isFighting = false; }
 
 };
 
