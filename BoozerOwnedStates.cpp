@@ -36,9 +36,29 @@ void DrinkB::Execute(Boozer* pBoozer) {
 
 bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 
+	
+
 	switch (msg.Msg) {
 
 		case Msg_ImDrinking: 
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+
+			// tell Bob to enter the fight immediately
+			Dispatch->DispatchMessage(
+				SEND_MSG_IMMEDIATELY,
+				pBoozer->ID(),
+				ent_Miner_Bob,
+				Msg_WannaFight,
+				NO_ADDITIONAL_INFO);
+
+			return true;
+
+		case Msg_AcceptFight:
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
@@ -61,16 +81,9 @@ FightB* FightB::Instance()
 
 
 void FightB::Enter(Boozer* pBoozer) {
+	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Hey look at that stupid face, haha!";
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm gonna kick your ass motherfucker !";
-
-	// tell Bob to enter the fight immediately
-	Dispatch->DispatchMessage(
-		SEND_MSG_IMMEDIATELY,
-		pBoozer->ID(),
-		ent_Miner_Bob,
-		Msg_WannaFight,
-		NO_ADDITIONAL_INFO);
 }
 
 
@@ -83,6 +96,7 @@ void FightB::Execute(Boozer* pBoozer) {
 	
 	bool punch = pBoozer->TryToPunch();
 	if (punch) {
+		cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Take this Miner ! ";
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -96,8 +110,6 @@ void FightB::Execute(Boozer* pBoozer) {
 
 void FightB::Exit(Boozer* pBoozer) {
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What a stupid fight...";
-
 	// He resets his lifewhen he is KO
 	pBoozer->ResetLife();
 }
@@ -107,6 +119,8 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 	switch (msg.Msg) {
 
 		case Msg_IPunchYou: 
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		
 			// The boozer recieves a punch :
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
@@ -129,8 +143,12 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 		
 
 		case Msg_ImKO:
+
+			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+
+			cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What a stupid fight...";
 
 			// If the miner is KO, he go back DrinkB and reset his life :
 			pBoozer->GetFSM()->ChangeState(DrinkB::Instance());
@@ -152,11 +170,13 @@ KOB* KOB::Instance()
 
 
 void KOB::Enter(Boozer* pBoozer) {
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Is KO !";
 }
 
 
 void KOB::Execute(Boozer* pBoozer) {
+
+	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm KO !";
+
 	// increase Ko level
 	pBoozer->IncreaseKoLevel();
 	bool change = pBoozer->IsStunned();
