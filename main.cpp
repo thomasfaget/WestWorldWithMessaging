@@ -9,6 +9,7 @@
 #include "MessageDispatcher.h"
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
+#include "AIThread.h"
 
 
 std::ofstream os;
@@ -22,24 +23,27 @@ int main() {
     //seed random number generator
     srand((unsigned)time(NULL));
 
-    //create a miner
-    Miner* Bob = new Miner(ent_Miner_Bob);
+    //create the AI :
+    Miner* bob = new Miner(ent_Miner_Bob);
+    MinersWife* elsa = new MinersWife(ent_Elsa);
+    Boozer* boozer = new Boozer(ent_Boozer);
 
-    //create his wife
-    MinersWife* Elsa = new MinersWife(ent_Elsa);
-
-    Boozer* Booz = new Boozer(ent_Boozer);
+    // Create the threads :
+    AIThread minerThread( bob );
+    AIThread minerWifeThread( elsa );
+    AIThread boozerThread( boozer );
 
     //register them with the entity manager
-    EntityMgr->RegisterEntity(Bob);
-    EntityMgr->RegisterEntity(Elsa);
-    EntityMgr->RegisterEntity(Booz);
+    EntityMgr->RegisterEntity(bob);
+    EntityMgr->RegisterEntity(elsa);
+    EntityMgr->RegisterEntity(boozer);
 
     //run Bob and Elsa through a few Update calls
     for (int i = 0; i < 30; ++i) {
-        Bob->Update();
-        Elsa->Update();
-        Booz->Update();
+        
+        minerThread.update();
+        minerWifeThread.update();
+        boozerThread.update();
 
         //dispatch any delayed messages
         Dispatch->DispatchDelayedMessages();
@@ -48,9 +52,9 @@ int main() {
     }
 
     //tidy up
-    delete Bob;
-    delete Elsa;
-    delete Booz;
+    delete bob;
+    delete elsa;
+    delete boozer;
 
     //wait for a keypress before exiting
     PressAnyKeyToContinue();
