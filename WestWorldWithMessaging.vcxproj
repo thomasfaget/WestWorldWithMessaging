@@ -128,6 +128,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIThread.cpp" />
+    <ClCompile Include="AIThreadManager.cpp" />
     <ClCompile Include="Boozer.cpp" />
     <ClCompile Include="BoozerOwnedStates.cpp" />
     <ClCompile Include="Time\CrudeTimer.cpp" />
@@ -142,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2D\SVector2D.h" />
+    <ClInclude Include="AIThread.h" />
+    <ClInclude Include="AIThreadManager.h" />
     <ClInclude Include="Boozer.h" />
     <ClInclude Include="BoozerOwnedStates.h" />
     <ClInclude Include="FSM\State.h" />

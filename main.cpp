@@ -1,7 +1,6 @@
 #include <fstream>
 #include <time.h>
 
-#include "Locations.h"
 #include "Miner.h"
 #include "MinersWife.h"
 #include "Boozer.h"
@@ -10,6 +9,7 @@
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
 #include "AIThread.h"
+#include "AIThreadManager.h"
 
 
 std::ofstream os;
@@ -21,7 +21,7 @@ int main() {
 #endif
 
     //seed random number generator
-    srand((unsigned)time(NULL));
+    srand((unsigned)time(nullptr));
 
     //create the AI :
     Miner* bob = new Miner(ent_Miner_Bob);
@@ -38,12 +38,17 @@ int main() {
     EntityMgr->RegisterEntity(elsa);
     EntityMgr->RegisterEntity(boozer);
 
+    // The ThreadManager and all the thread
+    AIThreadManager threadManager;
+    threadManager.addThread( &minerThread );
+    threadManager.addThread( &minerWifeThread );
+    threadManager.addThread( &boozerThread );
+
     //run Bob and Elsa through a few Update calls
     for (int i = 0; i < 30; ++i) {
         
-        minerThread.update();
-        minerWifeThread.update();
-        boozerThread.update();
+        // Update all the threads
+        threadManager.updateAllThreads();
 
         //dispatch any delayed messages
         Dispatch->DispatchDelayedMessages();
@@ -55,6 +60,7 @@ int main() {
     delete bob;
     delete elsa;
     delete boozer;
+    threadManager.clear();
 
     //wait for a keypress before exiting
     PressAnyKeyToContinue();

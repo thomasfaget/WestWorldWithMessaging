@@ -19,6 +19,7 @@ private:
 public:
 
     explicit AIThread( BaseGameEntity* entity );
+    ~AIThread();
     void setGameEntity( BaseGameEntity* entity );
     void update();
     
