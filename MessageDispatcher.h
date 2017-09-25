@@ -17,6 +17,7 @@
 
 #include "misc/ConsoleUtils.h"
 #include "messaging/Telegram.h"
+#include "Thread.h"
 
 class BaseGameEntity;
 
@@ -29,7 +30,7 @@ const int   NO_ADDITIONAL_INFO   = 0;
 #define Dispatch MessageDispatcher::Instance()
 
 
-class MessageDispatcher
+class MessageDispatcher : public Thread
 {
 private:  
   
@@ -64,6 +65,7 @@ public:
   //send out any delayed messages. This method is called each time through   
   //the main game loop.
   void DispatchDelayedMessages();
+  void run();
 };
 
 

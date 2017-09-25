@@ -1,5 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+#include "Thread.h"
+
 //------------------------------------------------------------------------
 //
 //  Name:   BaseGameEntity.h
@@ -12,9 +14,10 @@
 #include <string>
 
 #include "messaging/Telegram.h"
+#include "Thread.h"
 
 
-class BaseGameEntity
+class BaseGameEntity : public Thread
 {
 
 private:
@@ -49,6 +52,9 @@ public:
   virtual bool  HandleMessage(const Telegram& msg)=0;
 
   int           ID()const{return m_ID;}  
+
+  //heritage from Thread
+  void run();
 };
 
 

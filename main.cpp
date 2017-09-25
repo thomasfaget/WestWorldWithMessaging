@@ -37,6 +37,13 @@ int main()
   EntityMgr->RegisterEntity(Booz);
 
   //run Bob and Elsa through a few Update calls
+
+  Bob->start();
+  Elsa->start();
+  Booz->start();
+  Dispatch->start();
+
+  /*
   for (int i=0; i<30; ++i)
   { 
     Bob->Update();
@@ -48,6 +55,11 @@ int main()
 
     Sleep(800);
   }
+  */
+  Bob->join();
+  Elsa->join();
+  Booz->join();
+  Dispatch->join();
 
   //tidy up
   delete Bob;

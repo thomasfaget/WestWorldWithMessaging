@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Boozer.cpp" />
     <ClCompile Include="BoozerOwnedStates.cpp" />
+    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Time\CrudeTimer.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Messaging\Telegram.h" />
     <ClInclude Include="misc\ConsoleUtils.h" />
     <ClInclude Include="misc\utils.h" />
+    <ClInclude Include="Thread.h" />
     <ClInclude Include="Time\CrudeTimer.h" />
     <ClInclude Include="BaseGameEntity.h" />
     <ClInclude Include="EntityManager.h" />

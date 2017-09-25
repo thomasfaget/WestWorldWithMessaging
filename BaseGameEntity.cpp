@@ -1,7 +1,7 @@
 #include "BaseGameEntity.h"
 #include <cassert>
-
-
+#include <chrono>
+#include <thread>
 
 int BaseGameEntity::m_iNextValidID = 0;
 
@@ -22,4 +22,12 @@ void BaseGameEntity::SetID(int val)
   m_ID = val;
     
   m_iNextValidID = m_ID + 1;
+}
+
+// called when thread starts to run
+void BaseGameEntity::run() {
+	for (int i = 0; i < 30; i++) {
+		this->Update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(800));
+	}
 }
