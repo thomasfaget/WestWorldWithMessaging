@@ -49,6 +49,9 @@ private:
   MessageDispatcher(const MessageDispatcher&);
   MessageDispatcher& operator=(const MessageDispatcher&);
 
+    // A mutex :
+  std::mutex lock;
+
 public:
 
   //this class is a singleton

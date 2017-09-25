@@ -108,6 +108,9 @@ void MessageDispatcher::DispatchMessage(double  delay,
 //------------------------------------------------------------------------
 void MessageDispatcher::DispatchDelayedMessages()
 {
+
+    lock.lock();
+
   SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
   
   //get current time
@@ -135,6 +138,8 @@ void MessageDispatcher::DispatchDelayedMessages()
     //remove it from the queue
     PriorityQ.erase(PriorityQ.begin());
   }
+
+  lock.unlock();
 }
 
 

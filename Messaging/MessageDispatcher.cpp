@@ -3,6 +3,7 @@
 #include "misc/FrameCounter.h"
 #include "game/EntityManager.h"
 #include "Debug/DebugConsole.h"
+#include <mutex>
 
 using std::set;
 
@@ -47,6 +48,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
                                     int          msg,
                                     void*        AdditionalInfo = NULL)
 {
+  lock.lock();
 
   //get a pointer to the receiver
   BaseGameEntity* pReceiver = EntityMgr->GetEntityFromID(receiver);

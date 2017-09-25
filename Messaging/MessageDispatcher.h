@@ -13,6 +13,7 @@
 //------------------------------------------------------------------------
 #include <set>
 #include <string>
+#include <mutex>
 
 
 #include "Messaging/Telegram.h"
@@ -49,6 +50,9 @@ private:
   //copy ctor and assignment should be private
   MessageDispatcher(const MessageDispatcher&);
   MessageDispatcher& operator=(const MessageDispatcher&);
+
+  // A mutex :
+  std::mutex lock;
 
 public:
 
