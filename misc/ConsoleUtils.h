@@ -12,6 +12,9 @@
 #include <windows.h>
 #include <conio.h>
 #include <iostream>
+#include <string>
+#include <mutex>
+
 
 //default text colors can be found in wincon.h
 inline void SetTextColor(WORD colors)
@@ -32,6 +35,34 @@ inline void PressAnyKeyToContinue()
 
   return;
 }
+
+class ConsoleUtils {
+
+public:
+
+    // Get the instance
+    static ConsoleUtils& getInstance() {
+        static ConsoleUtils instance;
+        return instance;
+    }
+
+    // Print a message in the console
+    // Handle the color
+    // Use a mutex for multiThreading
+    void PrintMessageInConsole( std::string msg, WORD color ) {
+
+        lock.lock();
+        SetTextColor( color );
+        std::cout << msg << std::endl;
+        lock.unlock();
+    }
+
+private:
+    std::mutex lock;
+    ConsoleUtils() {}
+    
+};
+
 
 
 #endif
