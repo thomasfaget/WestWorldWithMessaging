@@ -69,7 +69,7 @@ public:
 	bool          Cooking()const { return m_bCooking; }
 	void          SetCooking(bool val) { m_bCooking = val; }
 
-	void		  speak(std::string msg, MinersWife* wife);
+	void		  speak(std::string msg);
 };
 
 #endif

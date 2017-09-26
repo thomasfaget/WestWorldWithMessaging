@@ -31,7 +31,7 @@ DrinkB* DrinkB::Instance()
 
 void DrinkB::Execute(Boozer* pBoozer) {
 
-	pBoozer->speak(" : I'm Drinking bitch !!!",pBoozer);
+	pBoozer->speak(" : I'm Drinking bitch !!!");
 
 }
 
@@ -90,7 +90,7 @@ FightB* FightB::Instance()
 
 
 void FightB::Enter(Boozer* pBoozer) {
-	pBoozer->speak("Hey look at that stupid face, haha!",pBoozer);
+	pBoozer->speak("Hey look at that stupid face, haha!");
 }
 
 
@@ -98,12 +98,12 @@ void FightB::Execute(Boozer* pBoozer) {
 
 	// He tries to punch Bob
 
-	pBoozer->speak("Fighting...", pBoozer);
+	pBoozer->speak("Fighting...");
 
 	
 	bool punch = pBoozer->TryToPunch();
 	if (punch) {
-		pBoozer->speak("Take this Miner ! ", pBoozer);
+		pBoozer->speak("Take this Miner ! ");
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -159,7 +159,7 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 
 			ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
-			pBoozer->speak("What a stupid fight...", pBoozer);
+			pBoozer->speak("What a stupid fight...");
 
 			// If the miner is KO, he go back DrinkB and reset his life :
 			pBoozer->GetFSM()->ChangeState(DrinkB::Instance());
@@ -187,7 +187,7 @@ void KOB::Enter(Boozer* pBoozer) {
 
 void KOB::Execute(Boozer* pBoozer) {
 
-	pBoozer->speak("I'm KO !", pBoozer);
+	pBoozer->speak("I'm KO !");
 
 	// increase Ko level
 	pBoozer->IncreaseKoLevel();
@@ -202,7 +202,7 @@ void KOB::Execute(Boozer* pBoozer) {
 
 void KOB::Exit(Boozer* pBoozer) {
 	//Exit of Ko state reset it 
-	pBoozer->speak("What happened ? Well ... Let's drink again !", pBoozer);
+	pBoozer->speak("What happened ? Well ... Let's drink again !");
 	pBoozer->ResetKoLevel();
 }
 

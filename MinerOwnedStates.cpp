@@ -34,7 +34,7 @@ void EnterMineAndDigForNugget::Enter(Miner* pMiner)
 	//change location to the gold mine
 	if (pMiner->Location() != goldmine)
 	{
-		pMiner->speak("Walkin' to the goldmine", pMiner);
+		pMiner->speak("Walkin' to the goldmine");
 
 		pMiner->ChangeLocation(goldmine);
 	}
@@ -51,7 +51,7 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 
 	pMiner->IncreaseFatigue();
 
-	pMiner->speak("Pickin' up a nugget", pMiner);
+	pMiner->speak("Pickin' up a nugget");
 
 	//if enough gold mined, go and put it in the bank
 	if (pMiner->PocketsFull())
@@ -68,7 +68,7 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 
 void EnterMineAndDigForNugget::Exit(Miner* pMiner)
 {
-	pMiner->speak("Ah'm leavin' the goldmine with mah pockets full o' sweet gold", pMiner);
+	pMiner->speak("Ah'm leavin' the goldmine with mah pockets full o' sweet gold");
 }
 
 
@@ -92,7 +92,7 @@ void VisitBankAndDepositGold::Enter(Miner* pMiner)
 	//on entry the miner makes sure he is located at the bank
 	if (pMiner->Location() != bank)
 	{
-		pMiner->speak("Goin' to the bank. Yes siree", pMiner);
+		pMiner->speak("Goin' to the bank. Yes siree");
 
 		pMiner->ChangeLocation(bank);
 	}
@@ -106,13 +106,13 @@ void VisitBankAndDepositGold::Execute(Miner* pMiner)
 
 	pMiner->SetGoldCarried(0);
 
-	pMiner->speak("Depositing gold. Total savings now: " + std::to_string(pMiner->Wealth()), pMiner);
+	pMiner->speak("Depositing gold. Total savings now: " + std::to_string(pMiner->Wealth()));
 
 	//wealthy enough to have a well earned rest?
 	if (pMiner->Wealth() >= ComfortLevel)
 	{
 
-		pMiner->speak("WooHoo!Rich enough for now.Back home to mah li'lle lady", pMiner);
+		pMiner->speak("WooHoo!Rich enough for now.Back home to mah li'lle lady");
 
 		pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
 	}
@@ -127,7 +127,7 @@ void VisitBankAndDepositGold::Execute(Miner* pMiner)
 
 void VisitBankAndDepositGold::Exit(Miner* pMiner)
 {
-	pMiner->speak("Leavin' the bank", pMiner);
+	pMiner->speak("Leavin' the bank");
 }
 
 
@@ -149,7 +149,7 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 {
 	if (pMiner->Location() != shack)
 	{
-		pMiner->speak("Walkin' home", pMiner);
+		pMiner->speak("Walkin' home");
 
 		pMiner->ChangeLocation(shack);
 
@@ -167,7 +167,7 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
 	//if miner is not fatigued start to dig for nuggets again.
 	if (!pMiner->Fatigued())
 	{
-		pMiner->speak("All mah fatigue has drained away. Time to find more gold!", pMiner);
+		pMiner->speak("All mah fatigue has drained away. Time to find more gold!");
 
 		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 	}
@@ -177,7 +177,7 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
 		//sleep
 		pMiner->DecreaseFatigue();
 
-		pMiner->speak("ZZZZ... ", pMiner);
+		pMiner->speak("ZZZZ... ");
 	}
 }
 
@@ -198,7 +198,7 @@ bool GoHomeAndSleepTilRested::OnMessage(Miner* pMiner, const Telegram& msg)
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 
-		pMiner->speak("Okay Hun, ahm a comin'!", pMiner);
+		pMiner->speak("Okay Hun, ahm a comin'!");
 
 		pMiner->GetFSM()->ChangeState(EatStew::Instance());
 
@@ -224,7 +224,7 @@ void QuenchThirst::Enter(Miner* pMiner)
 	{
 		pMiner->ChangeLocation(saloon);
 
-		pMiner->speak("Boy, ah sure is thusty! Walking to the saloon", pMiner);
+		pMiner->speak("Boy, ah sure is thusty! Walking to the saloon");
 
 	}
 }
@@ -233,7 +233,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 {
 	pMiner->BuyAndDrinkAWhiskey();
 
-	pMiner->speak("That's mighty fine sippin' liquer", pMiner);
+	pMiner->speak("That's mighty fine sippin' liquer");
 
 	// tell the boozer Bob is here
 	Dispatch->DispatchMessage(
@@ -247,7 +247,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 
 void QuenchThirst::Exit(Miner* pMiner)
 {
-	pMiner->speak("I drink too much ", pMiner);
+	pMiner->speak("I drink too much ");
 }
 
 
@@ -287,19 +287,19 @@ EatStew* EatStew::Instance()
 
 void EatStew::Enter(Miner* pMiner)
 {
-	pMiner->speak("Smells Reaaal goood Elsa!", pMiner);
+	pMiner->speak("Smells Reaaal goood Elsa!");
 }
 
 void EatStew::Execute(Miner* pMiner)
 {
-	pMiner->speak("Tastes real good too!", pMiner);
+	pMiner->speak("Tastes real good too!");
 
 	pMiner->GetFSM()->RevertToPreviousState();
 }
 
 void EatStew::Exit(Miner* pMiner)
 {
-	pMiner->speak("Thankya li'lle lady. Ah better get back to whatever ah wuz doin'", pMiner);
+	pMiner->speak("Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
 }
 
 
@@ -320,18 +320,18 @@ Fight* Fight::Instance()
 
 void Fight::Enter(Miner* pMiner) {
 	pMiner->StartFight();
-	pMiner->speak("You started this fight !", pMiner);
+	pMiner->speak("You started this fight !");
 }
 
 
 void Fight::Execute(Miner* pMiner) {
 
-	pMiner->speak("Fighting...", pMiner);
+	pMiner->speak("Fighting...");
 
 	// He tries to punch boozer
 	bool punch = pMiner->TryToPunch();
 	if (punch) {
-		pMiner->speak("Take this Boozer !", pMiner);
+		pMiner->speak("Take this Boozer !");
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -386,7 +386,7 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
-		pMiner->speak("Lets leave this fucking saloon ! ", pMiner);
+		pMiner->speak("Lets leave this fucking saloon ! ");
 
 		// If the boozer is KO, he go back in the mine :
 		pMiner->ResetLife();
@@ -415,7 +415,7 @@ void KO::Enter(Miner* pMiner) {
 
 void KO::Execute(Miner* pMiner) {
 
-	pMiner->speak("I'm KO !", pMiner);
+	pMiner->speak("I'm KO !");
 
 	// increase Ko level
 	pMiner->IncreaseKoLevel();
@@ -430,7 +430,7 @@ void KO::Execute(Miner* pMiner) {
 
 void KO::Exit(Miner* pMiner) {
 	//Exit of Ko state reset it 
-	pMiner->speak("What happened ? Well ... Let's moove !", pMiner);
+	pMiner->speak("What happened ? Well ... Let's moove !");
 
 	pMiner->ResetKoLevel();
 }

@@ -49,7 +49,7 @@ bool WifesGlobalState::OnMessage(MinersWife* wife, const Telegram& msg)
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
-		wife->speak("Hi honey. Let me make you some of mah fine country stew",wife);
+		wife->speak("Hi honey. Let me make you some of mah fine country stew");
 
 		wife->GetFSM()->ChangeState(CookStew::Instance());
 	}
@@ -73,7 +73,7 @@ DoHouseWork* DoHouseWork::Instance()
 
 void DoHouseWork::Enter(MinersWife* wife)
 {
-	wife->speak("Time to do some more housework!",wife);
+	wife->speak("Time to do some more housework!");
 }
 
 
@@ -83,18 +83,18 @@ void DoHouseWork::Execute(MinersWife* wife)
 	{
 	case 0:
 
-		wife->speak("Moppin' the floor",wife);
+		wife->speak("Moppin' the floor");
 
 		break;
 
 	case 1:
-		wife->speak("Washin' the dishes",wife);
+		wife->speak("Washin' the dishes");
 
 		break;
 
 	case 2:
 
-		wife->speak("Makin' the bed",wife);
+		wife->speak("Makin' the bed");
 
 		break;
 	}
@@ -121,20 +121,20 @@ VisitBathroom* VisitBathroom::Instance()
 
 void VisitBathroom::Enter(MinersWife* wife)
 {
-	wife->speak("Walkin' to the can. Need to powda mah pretty li'lle nose",wife);
+	wife->speak("Walkin' to the can. Need to powda mah pretty li'lle nose");
 }
 
 
 void VisitBathroom::Execute(MinersWife* wife)
 {
-	wife->speak("Ahhhhhh! Sweet relief!",wife);
+	wife->speak("Ahhhhhh! Sweet relief!");
 
 	wife->GetFSM()->RevertToPreviousState();
 }
 
 void VisitBathroom::Exit(MinersWife* wife)
 {
-	wife->speak("Leavin' the Jon",wife);
+	wife->speak("Leavin' the Jon");
 }
 
 
@@ -159,7 +159,7 @@ void CookStew::Enter(MinersWife* wife)
 	//if not already cooking put the stew in the oven
 	if (!wife->Cooking())
 	{
-		wife->speak("Putting the stew in the oven",wife);
+		wife->speak("Putting the stew in the oven");
 
 		//send a delayed message myself so that I know when to take the stew
 		//out of the oven
@@ -176,13 +176,13 @@ void CookStew::Enter(MinersWife* wife)
 
 void CookStew::Execute(MinersWife* wife)
 {
-	wife->speak("Fussin' over food",wife);
+	wife->speak("Fussin' over food");
 }
 
 void CookStew::Exit(MinersWife* wife)
 {
 
-	wife->speak("Puttin' the stew on the table",wife);
+	wife->speak("Puttin' the stew on the table");
 }
 
 
@@ -199,7 +199,7 @@ bool CookStew::OnMessage(MinersWife* wife, const Telegram& msg)
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
-		wife->speak("StewReady! Lets eat",wife);
+		wife->speak("StewReady! Lets eat");
 
 		//let hubby know the stew is ready
 		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,

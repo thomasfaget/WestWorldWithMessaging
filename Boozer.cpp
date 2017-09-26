@@ -12,7 +12,6 @@ void Boozer::Update()
 {
 	this->lock();
 
-	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 	m_pStateMachine->Update();
 
