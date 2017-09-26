@@ -70,5 +70,5 @@ bool Miner::TryToPunch()
 }
 
 void Miner::speak(std::string msg) {
-	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_RED | FOREGROUND_INTENSITY);
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->ID()) + " : " + msg, FOREGROUND_RED | FOREGROUND_INTENSITY);
 }

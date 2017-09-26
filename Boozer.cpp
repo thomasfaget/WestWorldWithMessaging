@@ -33,5 +33,5 @@ bool Boozer::TryToPunch()
 }
 
 void Boozer::speak(std::string msg) {
-	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->ID()) + " : " + msg, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 }

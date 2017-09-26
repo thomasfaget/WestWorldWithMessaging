@@ -18,5 +18,5 @@ void MinersWife::Update()
 }
 
 void MinersWife::speak(std::string msg) {
-	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_GREEN | FOREGROUND_INTENSITY); 
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->ID()) + " : " + msg, FOREGROUND_GREEN | FOREGROUND_INTENSITY); 
 }
