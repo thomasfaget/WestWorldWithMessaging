@@ -2,8 +2,6 @@
 #include "EntityNames.h"
 #include <random>
 
-extern std::mutex lock_speak;
-
 bool Boozer::HandleMessage(const Telegram& msg)
 {
 	return m_pStateMachine->HandleMessage(msg);
@@ -14,6 +12,7 @@ void Boozer::Update()
 {
 	this->lock();
 
+	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 	m_pStateMachine->Update();
 
@@ -33,6 +32,6 @@ bool Boozer::TryToPunch()
 	}
 }
 
-void Boozer::speak(std::string msg, Boozer* pBoozer) {
-	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(pBoozer->ID()) + " : " + msg, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+void Boozer::speak(std::string msg) {
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->ID()) + " : " + msg, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 }

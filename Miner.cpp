@@ -2,7 +2,6 @@
 #include "EntityNames.h"
 #include <random>
 
-
 bool Miner::HandleMessage(const Telegram& msg)
 {
 	std::lock_guard<std::mutex> lock(this->mutex);
@@ -13,6 +12,7 @@ bool Miner::HandleMessage(const Telegram& msg)
 void Miner::Update()
 {
 	this->lock();
+	SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 	if ((!isFighting) && (koLevel == 0)) { // si il n'est ni en combat ni en état de ko 
 		m_iThirst += 1;
@@ -69,6 +69,6 @@ bool Miner::TryToPunch()
 	}
 }
 
-void Miner::speak(std::string msg, Miner* pMiner) {
-	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(pMiner->ID()) + " : " + msg, FOREGROUND_RED | FOREGROUND_INTENSITY);
+void Miner::speak(std::string msg) {
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->ID()) + " : " + msg, FOREGROUND_RED | FOREGROUND_INTENSITY);
 }
