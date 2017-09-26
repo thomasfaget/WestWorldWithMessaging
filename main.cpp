@@ -43,19 +43,7 @@ int main()
   Booz->start();
   Dispatch->start();
 
-  /*
-  for (int i=0; i<30; ++i)
-  { 
-    Bob->Update();
-    Elsa->Update();
-	Booz->Update();
-
-    //dispatch any delayed messages
-    Dispatch->DispatchDelayedMessages();
-
-    Sleep(800);
-  }
-  */
+  // wait all the thread to finish their work
   Bob->join();
   Elsa->join();
   Booz->join();
