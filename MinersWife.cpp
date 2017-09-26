@@ -1,4 +1,5 @@
 #include "MinersWife.h"
+#include "EntityNames.h"
 
 bool MinersWife::HandleMessage(const Telegram& msg)
 {
@@ -14,4 +15,8 @@ void MinersWife::Update()
  
   m_pStateMachine->Update();
   this->unlock();
+}
+
+void MinersWife::speak(std::string msg) {
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_GREEN | FOREGROUND_INTENSITY); 
 }

@@ -15,6 +15,7 @@
 
 #include "messaging/Telegram.h"
 #include "Thread.h"
+#include "misc/ConsoleUtils.h"
 
 
 class BaseGameEntity : public Thread
@@ -55,6 +56,8 @@ public:
 
   //heritage from Thread
   void run();
+
+  void speak(std::string msg, WORD color);
 };
 
 

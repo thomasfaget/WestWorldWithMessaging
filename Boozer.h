@@ -86,6 +86,8 @@ public:
 	// if true attack succes else no 
 	bool          TryToPunch();
 
+	void speak(std::string msg);
+
 };
 
 

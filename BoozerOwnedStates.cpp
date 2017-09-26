@@ -81,9 +81,7 @@ FightB* FightB::Instance()
 
 
 void FightB::Enter(Boozer* pBoozer) {
-	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Hey look at that stupid face, haha!";
-
+	pBoozer->speak("Hey look at that stupid face, haha!");
 }
 
 
@@ -91,12 +89,12 @@ void FightB::Execute(Boozer* pBoozer) {
 
 	// He tries to punch Bob
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Fighting...";
+	pBoozer->speak("Fighting...");
 
 	
 	bool punch = pBoozer->TryToPunch();
 	if (punch) {
-		cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : Take this Miner ! ";
+		pBoozer->speak("Take this Miner ! ");
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -148,7 +146,7 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 		
 			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
 
-			cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What a stupid fight...";
+			pBoozer->speak("What a stupid fight...");
 
 			// If the miner is KO, he go back DrinkB and reset his life :
 			pBoozer->GetFSM()->ChangeState(DrinkB::Instance());
@@ -175,7 +173,7 @@ void KOB::Enter(Boozer* pBoozer) {
 
 void KOB::Execute(Boozer* pBoozer) {
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm KO !";
+	pBoozer->speak("I'm KO !");
 
 	// increase Ko level
 	pBoozer->IncreaseKoLevel();
@@ -190,7 +188,7 @@ void KOB::Execute(Boozer* pBoozer) {
 
 void KOB::Exit(Boozer* pBoozer) {
 	//Exit of Ko state reset it 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : What happened ? Well ... Let's drink again !";
+	pBoozer->speak("What happened ? Well ... Let's drink again !");
 	pBoozer->ResetKoLevel();
 }
 

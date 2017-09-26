@@ -133,6 +133,7 @@ public:
   void			StartFight() { isFighting = true; }
   void			StopFight() { isFighting = false; }
 
+  void			speak(std::string msg);
 };
 
 

@@ -1,4 +1,5 @@
 #include "Boozer.h"
+#include "EntityNames.h"
 #include <random>
 
 bool Boozer::HandleMessage(const Telegram& msg)
@@ -29,4 +30,8 @@ bool Boozer::TryToPunch()
 		// Fail to punch :
 		return false;
 	}
+}
+
+void Boozer::speak(std::string msg) {
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 }

@@ -36,6 +36,7 @@ MessageDispatcher* MessageDispatcher::Instance()
 void MessageDispatcher::Discharge(BaseGameEntity* pReceiver,
                                   const Telegram& telegram)
 {
+	std::lock_guard<std::mutex> lock(this->mutex);
 	pReceiver->lock();
   if (!pReceiver->HandleMessage(telegram))
   {

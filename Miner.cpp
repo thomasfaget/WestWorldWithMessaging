@@ -1,57 +1,59 @@
 #include "Miner.h"
+#include "EntityNames.h"
 #include <random>
 
 bool Miner::HandleMessage(const Telegram& msg)
 {
-  return m_pStateMachine->HandleMessage(msg);
+	std::lock_guard<std::mutex> lock(this->mutex);
+	return m_pStateMachine->HandleMessage(msg);
 }
 
 
 void Miner::Update()
 {
 	this->lock();
-  SetTextColor(FOREGROUND_RED| FOREGROUND_INTENSITY);
+	SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-  if ((!isFighting) && (koLevel == 0)) { // si il n'est ni en combat ni en état de ko 
-	  m_iThirst += 1;
-  }
-  
-  m_pStateMachine->Update();
+	if ((!isFighting) && (koLevel == 0)) { // si il n'est ni en combat ni en état de ko 
+		m_iThirst += 1;
+	}
 
-  this->unlock();
+	m_pStateMachine->Update();
+
+	this->unlock();
 }
 
 
 
 void Miner::AddToGoldCarried(const int val)
 {
-  m_iGoldCarried += val;
+	m_iGoldCarried += val;
 
-  if (m_iGoldCarried < 0) m_iGoldCarried = 0;
+	if (m_iGoldCarried < 0) m_iGoldCarried = 0;
 }
 
 void Miner::AddToWealth(const int val)
 {
-  m_iMoneyInBank += val;
+	m_iMoneyInBank += val;
 
-  if (m_iMoneyInBank < 0) m_iMoneyInBank = 0;
+	if (m_iMoneyInBank < 0) m_iMoneyInBank = 0;
 }
 
 bool Miner::Thirsty()const
 {
-  if (m_iThirst >= ThirstLevel){return true;}
+	if (m_iThirst >= ThirstLevel) { return true; }
 
-  return false;
+	return false;
 }
 
 bool Miner::Fatigued()const
 {
-  if (m_iFatigue > TirednessThreshold)
-  {
-    return true;
-  }
+	if (m_iFatigue > TirednessThreshold)
+	{
+		return true;
+	}
 
-  return false;
+	return false;
 }
 
 bool Miner::TryToPunch()
@@ -65,4 +67,8 @@ bool Miner::TryToPunch()
 		// Fail to punch :
 		return false;
 	}
+}
+
+void Miner::speak(std::string msg) {
+	ConsoleUtils::getInstance().PrintMessageInConsole("\n" + GetNameOfEntity(this->id) + " : " + msg, FOREGROUND_RED | FOREGROUND_INTENSITY);
 }
