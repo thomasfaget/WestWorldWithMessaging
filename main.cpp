@@ -26,6 +26,12 @@ int main() {
 	MinersWife* elsa = new MinersWife(ent_Elsa);
 	Boozer* boozer = new Boozer(ent_Boozer);
 
+	//register them with the entity manager
+	EntityMgr->RegisterEntity(bob);
+	EntityMgr->RegisterEntity(elsa);
+	EntityMgr->RegisterEntity(boozer);
+
+
 	//run Bob and Elsa through a few Update calls
 
 	bob->start();

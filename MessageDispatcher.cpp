@@ -36,11 +36,13 @@ MessageDispatcher* MessageDispatcher::Instance()
 void MessageDispatcher::Discharge(BaseGameEntity* pReceiver,
                                   const Telegram& telegram)
 {
+	pReceiver->lock();
   if (!pReceiver->HandleMessage(telegram))
   {
     //telegram could not be handled
     cout << "Message not handled";
   }
+  pReceiver->unlock();
 }
 
 //---------------------------- DispatchMessage ---------------------------
