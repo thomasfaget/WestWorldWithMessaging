@@ -19,6 +19,7 @@ extern std::ofstream os;
 #endif
 
 
+
 // ------------- Drink State -----------------
 DrinkB* DrinkB::Instance()
 {
@@ -30,7 +31,7 @@ DrinkB* DrinkB::Instance()
 
 void DrinkB::Execute(Boozer* pBoozer) {
 
-	cout << "\n" << GetNameOfEntity(pBoozer->ID()) << " : I'm Drinking bitch !!!";
+	pBoozer->speak(" : I'm Drinking bitch !!!",pBoozer);
 
 }
 
@@ -41,10 +42,14 @@ bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 	switch (msg.Msg) {
 
 		case Msg_ImDrinking: 
+		{
 
-			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+			std::string message = "Message handled by " + GetNameOfEntity(pBoozer->ID())
+				+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
-			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+			ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+
 
 			// tell Bob to enter the fight immediately
 			Dispatch->DispatchMessage(
@@ -55,16 +60,20 @@ bool DrinkB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 				NO_ADDITIONAL_INFO);
 
 			return true;
+		}
 
 		case Msg_AcceptFight:
+		{
 
-			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+			std::string message = "Message handled by " + GetNameOfEntity(pBoozer->ID())
+				+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
-			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+			ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			pBoozer->GetFSM()->ChangeState(FightB::Instance());
 
 			return true;
+		}
 		
 
 	}
@@ -81,7 +90,7 @@ FightB* FightB::Instance()
 
 
 void FightB::Enter(Boozer* pBoozer) {
-	pBoozer->speak("Hey look at that stupid face, haha!");
+	pBoozer->speak("Hey look at that stupid face, haha!",pBoozer);
 }
 
 
@@ -89,12 +98,12 @@ void FightB::Execute(Boozer* pBoozer) {
 
 	// He tries to punch Bob
 
-	pBoozer->speak("Fighting...");
+	pBoozer->speak("Fighting...", pBoozer);
 
 	
 	bool punch = pBoozer->TryToPunch();
 	if (punch) {
-		pBoozer->speak("Take this Miner ! ");
+		pBoozer->speak("Take this Miner ! ", pBoozer);
 		// He sends him a msg if he successes his punch
 		Dispatch->DispatchMessage(
 			SEND_MSG_IMMEDIATELY,
@@ -117,11 +126,12 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 	switch (msg.Msg) {
 
 		case Msg_IPunchYou: 
+		{
 
-			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-		
-			// The boozer recieves a punch :
-			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+			std::string message = "Message handled by " + GetNameOfEntity(pBoozer->ID())
+				+ " at time: " + std::to_string(Clock->GetCurrentTime());
+
+			ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			pBoozer->DecreaseLife();
 
@@ -138,19 +148,23 @@ bool FightB::OnMessage(Boozer* pBoozer, const Telegram& msg) {
 				pBoozer->GetFSM()->ChangeState(KOB::Instance());
 			}
 			return true;
+		}
 		
 
 		case Msg_ImKO:
+		{
 
-			SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-		
-			cout << "\nMessage handled by " << GetNameOfEntity(pBoozer->ID()) << " at time: " << Clock->GetCurrentTime();
+			std::string message = "Message handled by " + GetNameOfEntity(pBoozer->ID())
+				+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
-			pBoozer->speak("What a stupid fight...");
+			ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+			pBoozer->speak("What a stupid fight...", pBoozer);
 
 			// If the miner is KO, he go back DrinkB and reset his life :
 			pBoozer->GetFSM()->ChangeState(DrinkB::Instance());
 			return true;
+		}
 		
 
 	}
@@ -173,7 +187,7 @@ void KOB::Enter(Boozer* pBoozer) {
 
 void KOB::Execute(Boozer* pBoozer) {
 
-	pBoozer->speak("I'm KO !");
+	pBoozer->speak("I'm KO !", pBoozer);
 
 	// increase Ko level
 	pBoozer->IncreaseKoLevel();
@@ -188,7 +202,7 @@ void KOB::Execute(Boozer* pBoozer) {
 
 void KOB::Exit(Boozer* pBoozer) {
 	//Exit of Ko state reset it 
-	pBoozer->speak("What happened ? Well ... Let's drink again !");
+	pBoozer->speak("What happened ? Well ... Let's drink again !", pBoozer);
 	pBoozer->ResetKoLevel();
 }
 

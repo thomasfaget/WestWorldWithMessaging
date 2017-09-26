@@ -15,7 +15,6 @@ using std::cout;
 extern std::ofstream os;
 #define cout os
 #endif
-
 //-----------------------------------------------------------------------Global state
 
 WifesGlobalState* WifesGlobalState::Instance()
@@ -39,16 +38,18 @@ void WifesGlobalState::Execute(MinersWife* wife)
 
 bool WifesGlobalState::OnMessage(MinersWife* wife, const Telegram& msg)
 {
-	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 	switch (msg.Msg)
 	{
 	case Msg_HiHoneyImHome:
 	{
-		cout << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: "
-			<< Clock->GetCurrentTime();
 
-		wife->speak("Hi honey. Let me make you some of mah fine country stew");
+		std::string message = "Message handled by " + GetNameOfEntity(wife->ID())
+			+ " at time: " + std::to_string(Clock->GetCurrentTime());
+
+		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+		wife->speak("Hi honey. Let me make you some of mah fine country stew",wife);
 
 		wife->GetFSM()->ChangeState(CookStew::Instance());
 	}
@@ -72,7 +73,7 @@ DoHouseWork* DoHouseWork::Instance()
 
 void DoHouseWork::Enter(MinersWife* wife)
 {
-	wife->speak("Time to do some more housework!");
+	wife->speak("Time to do some more housework!",wife);
 }
 
 
@@ -82,18 +83,18 @@ void DoHouseWork::Execute(MinersWife* wife)
 	{
 	case 0:
 
-		wife->speak("Moppin' the floor");
+		wife->speak("Moppin' the floor",wife);
 
 		break;
 
 	case 1:
-		wife->speak("Washin' the dishes");
+		wife->speak("Washin' the dishes",wife);
 
 		break;
 
 	case 2:
 
-		wife->speak("Makin' the bed");
+		wife->speak("Makin' the bed",wife);
 
 		break;
 	}
@@ -120,20 +121,20 @@ VisitBathroom* VisitBathroom::Instance()
 
 void VisitBathroom::Enter(MinersWife* wife)
 {
-	wife->speak("Walkin' to the can. Need to powda mah pretty li'lle nose");
+	wife->speak("Walkin' to the can. Need to powda mah pretty li'lle nose",wife);
 }
 
 
 void VisitBathroom::Execute(MinersWife* wife)
 {
-	wife->speak("Ahhhhhh! Sweet relief!");
+	wife->speak("Ahhhhhh! Sweet relief!",wife);
 
 	wife->GetFSM()->RevertToPreviousState();
 }
 
 void VisitBathroom::Exit(MinersWife* wife)
 {
-	wife->speak("Leavin' the Jon");
+	wife->speak("Leavin' the Jon",wife);
 }
 
 
@@ -158,7 +159,7 @@ void CookStew::Enter(MinersWife* wife)
 	//if not already cooking put the stew in the oven
 	if (!wife->Cooking())
 	{
-		wife->speak("Putting the stew in the oven");
+		wife->speak("Putting the stew in the oven",wife);
 
 		//send a delayed message myself so that I know when to take the stew
 		//out of the oven
@@ -175,14 +176,13 @@ void CookStew::Enter(MinersWife* wife)
 
 void CookStew::Execute(MinersWife* wife)
 {
-	wife->speak("Fussin' over food");
+	wife->speak("Fussin' over food",wife);
 }
 
 void CookStew::Exit(MinersWife* wife)
 {
-	SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-	wife->speak("Puttin' the stew on the table");
+	wife->speak("Puttin' the stew on the table",wife);
 }
 
 
@@ -193,10 +193,13 @@ bool CookStew::OnMessage(MinersWife* wife, const Telegram& msg)
 	{
 	case Msg_StewReady:
 	{
-		cout << "\nMessage received by " << GetNameOfEntity(wife->ID()) <<
-			" at time: " << Clock->GetCurrentTime();
 
-		wife->speak("StewReady! Lets eat");
+		std::string message = "Message received byy " + GetNameOfEntity(wife->ID())
+			+ " at time: " + std::to_string(Clock->GetCurrentTime());
+
+		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+		wife->speak("StewReady! Lets eat",wife);
 
 		//let hubby know the stew is ready
 		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,

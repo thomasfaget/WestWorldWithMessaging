@@ -48,7 +48,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
                                     int          msg,
                                     void*        AdditionalInfo = NULL)
 {
-  lock.lock();
+  //lock.lock();
 
   //get a pointer to the receiver
   BaseGameEntity* pReceiver = EntityMgr->GetEntityFromID(receiver);
@@ -95,6 +95,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
             << ". Msg is " << msg << "";
     #endif
   }
+  //lock.unlock();
 }
 
 //---------------------- DispatchDelayedMessages -------------------------
@@ -104,6 +105,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
 //------------------------------------------------------------------------
 void MessageDispatcher::DispatchDelayedMessages()
 { 
+	//lock.lock();
   //first get current time
   double CurrentTime = TickCounter->GetCurrentFrame(); 
 
@@ -131,6 +133,7 @@ void MessageDispatcher::DispatchDelayedMessages()
 	//remove it from the queue
     PriorityQ.erase(PriorityQ.begin());
   }
+  //lock.unlock();
 }
 
 

@@ -1,5 +1,6 @@
 #include <fstream>
 #include <time.h>
+#include <mutex>
 
 #include "Miner.h"
 #include "MinersWife.h"
@@ -9,8 +10,7 @@
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
 
-
-std::ofstream os;
+std::ofstream os; 
 
 int main() {
 	//define this to send output to a text file (see locations.h)
