@@ -9,6 +9,7 @@ bool Miner::HandleMessage(const Telegram& msg)
 
 void Miner::Update()
 {
+	this->lock();
   SetTextColor(FOREGROUND_RED| FOREGROUND_INTENSITY);
 
   if ((!isFighting) && (koLevel == 0)) { // si il n'est ni en combat ni en état de ko 
@@ -16,6 +17,8 @@ void Miner::Update()
   }
   
   m_pStateMachine->Update();
+
+  this->unlock();
 }
 
 

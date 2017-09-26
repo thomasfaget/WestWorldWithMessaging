@@ -128,10 +128,9 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AIThread.cpp" />
-    <ClCompile Include="AIThreadManager.cpp" />
     <ClCompile Include="Boozer.cpp" />
     <ClCompile Include="BoozerOwnedStates.cpp" />
+    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Time\CrudeTimer.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
@@ -144,8 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2D\SVector2D.h" />
-    <ClInclude Include="AIThread.h" />
-    <ClInclude Include="AIThreadManager.h" />
     <ClInclude Include="Boozer.h" />
     <ClInclude Include="BoozerOwnedStates.h" />
     <ClInclude Include="FSM\State.h" />
@@ -153,6 +150,7 @@
     <ClInclude Include="Messaging\Telegram.h" />
     <ClInclude Include="misc\ConsoleUtils.h" />
     <ClInclude Include="misc\utils.h" />
+    <ClInclude Include="Thread.h" />
     <ClInclude Include="Time\CrudeTimer.h" />
     <ClInclude Include="BaseGameEntity.h" />
     <ClInclude Include="EntityManager.h" />

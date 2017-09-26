@@ -142,5 +142,13 @@ void MessageDispatcher::DispatchDelayedMessages()
   lock.unlock();
 }
 
+// multithreading
+void MessageDispatcher::run() {
+	for (int i = 0; i < 100; i++) {
+		Dispatch->DispatchDelayedMessages();
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+	}
+}
+
 
 

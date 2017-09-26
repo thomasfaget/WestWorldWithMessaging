@@ -51,10 +51,7 @@
     <ClCompile Include="BoozerOwnedStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIThreadManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AIThread.cpp">
+    <ClCompile Include="Thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,10 +113,7 @@
     <ClInclude Include="BoozerOwnedStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIThreadManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AIThread.h">
+    <ClInclude Include="Thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
