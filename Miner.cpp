@@ -11,7 +11,7 @@ bool Miner::HandleMessage(const Telegram& msg)
 
 void Miner::Update()
 {
-	this->lock();
+	//this->lock();
 
 	if ((!isFighting) && (koLevel == 0)) { // si il n'est ni en combat ni en état de ko 
 		m_iThirst += 1;
@@ -19,7 +19,7 @@ void Miner::Update()
 
 	m_pStateMachine->Update();
 
-	this->unlock();
+	//this->unlock();
 }
 
 
@@ -58,6 +58,8 @@ bool Miner::Fatigued()const
 bool Miner::TryToPunch()
 {
 	int rand = std::rand() % 2;
+	speak("rand = " + std::to_string(rand));
+
 	if (rand == 0) {
 		// Success his punch :
 		return true;

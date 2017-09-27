@@ -10,12 +10,12 @@ bool Boozer::HandleMessage(const Telegram& msg)
 
 void Boozer::Update()
 {
-	this->lock();
+	//this->lock();
 
 
 	m_pStateMachine->Update();
 
-	this->unlock();
+	//this->unlock();
 }
 
 bool Boozer::TryToPunch()

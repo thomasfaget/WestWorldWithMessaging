@@ -9,11 +9,11 @@ bool MinersWife::HandleMessage(const Telegram& msg)
 
 void MinersWife::Update()
 {
-	this->lock();
+	//this->lock();
   //set text color to green
  
   m_pStateMachine->Update();
-  this->unlock();
+  //this->unlock();
 }
 
 void MinersWife::speak(std::string msg) {
