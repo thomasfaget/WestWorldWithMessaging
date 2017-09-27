@@ -36,14 +36,11 @@ MessageDispatcher* MessageDispatcher::Instance()
 void MessageDispatcher::Discharge(BaseGameEntity* pReceiver,
                                   const Telegram& telegram)
 {
-	std::lock_guard<std::mutex> lock(this->mutex);
-	pReceiver->lock();
   if (!pReceiver->HandleMessage(telegram))
   {
     //telegram could not be handled
 	ConsoleUtils::getInstance().PrintMessageInConsole("Message not handled", BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
   }
-  pReceiver->unlock();
 }
 
 //---------------------------- DispatchMessage ---------------------------
@@ -58,7 +55,6 @@ void MessageDispatcher::DispatchMessage(double  delay,
                                         int    msg,
                                         void*  ExtraInfo)
 {
-  lock.lock();
 
   //get pointers to the sender and receiver
   BaseGameEntity* pSender   = EntityMgr->GetEntityFromID(sender);
@@ -67,7 +63,7 @@ void MessageDispatcher::DispatchMessage(double  delay,
   //make sure the receiver is valid
   if (pReceiver == NULL)
   {
-	std::string message = "Warning! No Receiver with ID of " + std::to_string(receiver) + " found";
+      const std::string message = "Warning! No Receiver with ID of " + std::to_string(receiver) + " found";
 	ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
     return;
@@ -96,14 +92,13 @@ void MessageDispatcher::DispatchMessage(double  delay,
     telegram.DispatchTime = CurrentTime + delay;
 
     //and put it in the queue
-    PriorityQ.insert(telegram);   
-	std::string message = "Delayed telegram from " + GetNameOfEntity(pSender->ID()) + " recorded at time "
+    PriorityQ.insert(telegram);
+      const std::string message = "Delayed telegram from " + GetNameOfEntity(pSender->ID()) + " recorded at time "
 		+ std::to_string(Clock->GetCurrentTime()) + " for " + GetNameOfEntity(pReceiver->ID())
 		+ ". Msg is " + MsgToStr(msg);
 	ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
             
   }
-  lock.unlock();
 }
 
 
@@ -152,10 +147,7 @@ void MessageDispatcher::DispatchDelayedMessages()
 
 // multithreading
 void MessageDispatcher::run() {
-	for (int i = 0; i < 100; i++) {
-		Dispatch->DispatchDelayedMessages();
-		std::this_thread::sleep_for(std::chrono::milliseconds(200));
-	}
+    DispatchDelayedMessages();
 }
 
 
