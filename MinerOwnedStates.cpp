@@ -192,7 +192,7 @@ bool GoHomeAndSleepTilRested::OnMessage(Miner* pMiner, const Telegram& msg)
 	switch (msg.Msg)
 	{
 	case Msg_StewReady:
-		std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
+	    const std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
 			+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
@@ -257,6 +257,12 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 	switch (msg.Msg) {
 
 	case Msg_WannaFight:
+
+	    const std::string message = "Message handled by " + GetNameOfEntity( pMiner->ID() )
+            + " at time: " + std::to_string( Clock->GetCurrentTime() );
+
+        ConsoleUtils::getInstance().PrintMessageInConsole( message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE );
+
 
 		// ack
 		Dispatch->DispatchMessage(
@@ -356,7 +362,7 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 	case Msg_IPunchYou:
 	{
 
-		std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
+	    const std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
 			+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
@@ -381,7 +387,7 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 	case Msg_ImKO:
 	{
 
-		std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
+	    const std::string message = "Message handled by " + GetNameOfEntity(pMiner->ID())
 			+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
