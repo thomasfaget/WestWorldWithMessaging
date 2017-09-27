@@ -366,7 +366,7 @@ bool Fight::OnMessage(Miner* pMiner, const Telegram& msg) {
 			+ " at time: " + std::to_string(Clock->GetCurrentTime());
 
 		ConsoleUtils::getInstance().PrintMessageInConsole(message, BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-
+		pMiner->IncreaseFatigue();
 		pMiner->DecreaseLife();
 
 		if (pMiner->IsKO()) {

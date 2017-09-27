@@ -12,13 +12,6 @@ void Thread::join() {
 	this->myThread->join();
 }
 
-void Thread::lock() {
-	this->mutex.lock();
-}
-
-void Thread::unlock() {
-	this->mutex.unlock();
-}
 
 
 Thread::~Thread()

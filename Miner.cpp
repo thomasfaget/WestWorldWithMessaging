@@ -58,7 +58,6 @@ bool Miner::Fatigued()const
 bool Miner::TryToPunch()
 {
 	int rand = std::rand() % 2;
-	speak("rand = " + std::to_string(rand));
 
 	if (rand == 0) {
 		// Success his punch :

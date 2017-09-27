@@ -118,7 +118,9 @@ public:
   void          BuyAndDrinkAWhiskey(){m_iThirst = 0; m_iMoneyInBank-=2;}
 
   // Handle life :
-  void DecreaseLife() { life--; }
+  void DecreaseLife() { 
+	  life--;
+  }
   void ResetLife() { life = lifeMax; }
   bool IsKO() const { return life == 0; }
 

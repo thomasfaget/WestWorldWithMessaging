@@ -12,9 +12,6 @@ public:
 	void start();
 	void join();
 
-	void lock();
-	void unlock();
-
 protected:
 	virtual void run() = 0;
 	int id;
